@@ -78,10 +78,10 @@ for (train_index, test_index) in kf.split(X):
                 print('Epoch: {:.2f}%'.format((epoch + 1)/ITERATION * 100))
 
         # 前向传播
-        y_pred = model(X_test)
+        y_pred = model(X_train)
 
         # 计算损失
-        loss = loss_fn(y_pred, y_test)
+        loss = loss_fn(y_pred, y_train)
 
         # 反向传播
         loss.backward()

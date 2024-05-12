@@ -2,12 +2,10 @@ import torch
 import pandas as pd
 from torch.utils.data import TensorDataset, DataLoader
 from sklearn.model_selection import train_test_split
-import csv
-import numpy
-import sklearn
-import math
+
 
 IN_FEATURES = 1740
+ITERATION = 500000
 
 '''输入数据集'''
 csv_file_path_X = '/Users/linto/Codes/project/output_X.csv'
@@ -44,7 +42,7 @@ loss_fn = nn.MSELoss()
 optimizer = optim.Adam(model.parameters())
 
 # 训练
-ITERATION = 500000
+
 for epoch in range(ITERATION):
     if (epoch + 1) % 1000 == 0:  # 每1000次迭代打印一次
             print('Epoch: {:.2f}%'.format((epoch + 1)/ITERATION * 100))
@@ -66,4 +64,4 @@ for epoch in range(ITERATION):
 
     
 # 保存模型
-torch.save(model.state_dict(), 'model_parameters.pth')
+torch.save(model.state_dict(), 'model_parameters_test.pth')

@@ -1,4 +1,5 @@
 import pandas as pd
+import pickle
 
 # pd.set_option("display.unicode.east_asian_width", True) # 设置列名对齐
 # csv_file_path = '/Users/linto/Codes/project/genesis/genesis/spec_cfp2017_1.csv'
@@ -35,15 +36,29 @@ y = data.loc[:, 'Base Results']
 for column in X.columns:
     if columns_num_flag[column]:  
         X_num_table[column] = X[column]
+        # print(column)
     else:   
         X_bool_table = pd.concat([X_bool_table, pd.get_dummies(X[column])], axis=1)
 
+# test
+
+with open('columns.pkl', 'wb') as f:
+    pickle.dump(X_bool_table.columns, f)
+
+with open('columns.pkl', 'rb') as f:
+    columns = pickle.load(f)
+
+print(columns)
+
 X_bool_table = X_bool_table.astype(int)
 X_after = pd.concat([X_bool_table, X_num_table], axis=1)
-X_after.to_csv('output_X.csv', index=False)
+# X_after.to_csv('output_X.csv', index=False)
 
-y.to_csv('output_y.csv', index=False)
+# y.to_csv('output_y.csv', index=False)
 
+X_after.to_csv('output_X_test.csv', index=False)
+
+y.to_csv('output_y_test.csv', index=False)
 # print(pd.get_dummies(X['Cache L1']))
 # print(pd.get_dummies(X['L2']))
 # print(pd.get_dummies(X['L3']))

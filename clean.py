@@ -175,4 +175,5 @@ del data["Memory"]
 data = data.assign(Storage_num = trans_storage)
 del data["Storage"]
 
-data.to_csv('clean.csv', index=False)
+#data.to_csv('clean.csv', index=False)
+data.to_csv('clean_test.csv', index=False)

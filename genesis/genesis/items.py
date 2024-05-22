@@ -9,7 +9,7 @@ import scrapy
 class GenesisItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    # 28 项
+    # 28 项 + 1
     test_sponsor = scrapy.Field()
     cpu_name = scrapy.Field()
     max_mhz = scrapy.Field()
@@ -38,3 +38,4 @@ class GenesisItem(scrapy.Item):
     threads_core = scrapy.Field()
     base_results = scrapy.Field()
     peak_results = scrapy.Field()
+    year = scrapy.Field()

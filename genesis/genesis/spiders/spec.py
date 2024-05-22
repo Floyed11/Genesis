@@ -1,6 +1,7 @@
 import scrapy
 from genesis.items import GenesisItem
 from scrapy import Selector, Request
+from datetime import datetime
 
 MAX_ENTRIES = 10000
 
@@ -45,6 +46,9 @@ class SpecSpider(scrapy.Spider):
         # print("item = ", item)
         selector2 = Selector(response)
         # selector2 = selector.xpath("//table[@class='resultTable']")
+        s = selector2.xpath("//*[@id='test_date_val']/text()").extract_first()
+        date = datetime.strptime(s, "%b-%Y")
+        item["year"] = date.strftime("%Y%m")
 
         #hardware
         hardware_info = selector2.xpath("//*[@id='Hardware']/tbody")
